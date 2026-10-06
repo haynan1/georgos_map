@@ -1,21 +1,51 @@
+# Dependency update policy.
+#
+# Libraries: minor and patch updates arrive grouped (one PR per ecosystem per week);
+# majors arrive one PR each, so breaking changes are reviewed in isolation.
+#
+# Runtimes (Node, Python, PostgreSQL, base images): never bumped across major lines by the
+# bot. A runtime major touches Dockerfiles, CI, `engines`, every developer machine and,
+# for PostgreSQL, the data directory (a new major cannot open the old one without
+# pg_upgrade). Those upgrades are planned, coordinated changes — see ARCHITECTURE.md.
 version: 2
 updates:
   - package-ecosystem: uv
     directory: /backend
     schedule: { interval: weekly }
     groups:
-      python: { patterns: ["*"] }
+      python-libraries:
+        patterns: ["*"]
+        update-types: [minor, patch]
+
   - package-ecosystem: npm
     directory: /frontend
     schedule: { interval: weekly }
     groups:
-      javascript: { patterns: ["*"] }
+      javascript-libraries:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    ignore:
+      # Tracks the Node runtime major; moves together with it.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
   - package-ecosystem: docker
     directories: [/backend, /frontend]
     schedule: { interval: weekly }
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # python:3.14 -> 3.15 is a new language release despite being "minor" in tag terms.
+      - dependency-name: python
+        update-types: ["version-update:semver-minor"]
+
   - package-ecosystem: docker-compose
     directory: /
     schedule: { interval: weekly }
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }

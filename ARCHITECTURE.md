@@ -161,6 +161,18 @@ Sem APIs pagas nem serviços gerenciados obrigatórios. Roda em uma VM de 2 vCPU
 - Telemetria (Dupla 03) será o primeiro componente de volume real; avaliar particionamento
   por tempo (ou TimescaleDB) quando sair da simulação.
 
+## Atualização de dependências
+
+O Dependabot propõe semanalmente atualizações de bibliotecas (minor/patch agrupadas; majors
+uma por PR). **Runtimes não sobem de versão maior automaticamente** — Node, Python, PostgreSQL
+e imagens base exigem mudança coordenada:
+
+| Runtime | Regra |
+|---|---|
+| Node | Só versões **LTS**. Sobe junto: `Dockerfile`, `setup-node` no CI, `engines`, `@types/node` e as máquinas do time. |
+| Python | Nova versão (3.x) só após as dependências publicarem wheels; sobe `Dockerfile`, `.python-version`, `requires-python` e ruff/mypy. |
+| PostgreSQL | Versão maior exige `pg_upgrade` (ou dump/restore) do volume — nunca só trocar a tag. Backup antes, sempre. |
+
 ## Próximos passos de segurança (não implementados ainda)
 
 - Verificação de e-mail e recuperação de senha (requer provedor de e-mail transacional).
