@@ -1,0 +1,126 @@
+LICENÇA PROPRIETÁRIA — TODOS OS DIREITOS RESERVADOS
+Georgos Map
+
+Copyright (c) 2026 Os Autores do Georgos Map, conforme relacionados no arquivo AUTHORS.md.
+
+Este software, incluindo código-fonte, código-objeto, documentação, interfaces, design,
+marcas, nomes, logotipos e demais materiais contidos neste repositório (o "Software"), é
+protegido pela Lei nº 9.609/1998 (Lei do Software), pela Lei nº 9.610/1998 (Lei de
+Direitos Autorais), pela Lei nº 9.279/1996 (Lei de Propriedade Industrial) e pelos tratados
+internacionais aplicáveis. Nenhum direito é concedido a qualquer pessoa, exceto os
+expressamente previstos nesta licença.
+
+
+1. DEFINIÇÕES
+
+1.1. "Titulares": os Autores do Georgos Map relacionados em AUTHORS.md.
+
+1.2. "Colaboradores Autorizados": (a) os Titulares; e (b) as pessoas que recebam dos
+Titulares autorização prévia, expressa e por escrito para colaborar com o projeto, enquanto
+essa autorização estiver vigente.
+
+1.3. "Terceiros": qualquer pessoa física ou jurídica que não seja Colaborador Autorizado.
+
+
+2. PERMISSÃO AOS COLABORADORES AUTORIZADOS
+
+2.1. Os Colaboradores Autorizados recebem uma permissão não exclusiva, intransferível,
+não sublicenciável e revogável para usar, executar, copiar e modificar o Software
+exclusivamente com a finalidade de desenvolver, testar e operar o próprio projeto
+Georgos Map.
+
+2.2. Essa permissão não autoriza o uso do Software, no todo ou em parte, em qualquer
+outro projeto, produto, serviço ou empresa, nem sua divulgação a Terceiros.
+
+2.3. A permissão de um Colaborador Autorizado que não seja Titular termina
+automaticamente quando ele deixar o projeto ou quando a autorização for revogada, devendo
+ele apagar as cópias do Software em seu poder.
+
+
+3. VEDAÇÕES A TERCEIROS
+
+3.1. Nenhuma licença, expressa ou implícita, é concedida a Terceiros. Sem autorização
+prévia e por escrito dos Titulares, é proibido a Terceiros, total ou parcialmente:
+
+   a) copiar, reproduzir, clonar para uso, baixar para uso ou armazenar o Software;
+   b) executar, instalar, hospedar ou usar o Software, para qualquer finalidade,
+      comercial ou não;
+   c) modificar, adaptar, traduzir, refatorar ou criar obras derivadas do Software;
+   d) distribuir, publicar, sublicenciar, vender, alugar, emprestar ou transferir o
+      Software, ou disponibilizá-lo como serviço (SaaS);
+   e) usar o Software, sua arquitetura, sua interface ou seu design como base ou
+      referência para desenvolver produto ou serviço semelhante ou concorrente;
+   f) usar o Software, no todo ou em parte, para treinar, ajustar ou avaliar modelos de
+      inteligência artificial ou aprendizado de máquina, ou incluí-lo em conjuntos de
+      dados;
+   g) fazer engenharia reversa, descompilar ou desmontar qualquer versão compilada do
+      Software;
+   h) remover, alterar ou ocultar avisos de direitos autorais, marcas ou esta licença.
+
+3.2. A visibilidade pública deste repositório não constitui licença nem renúncia a
+qualquer direito. O acesso permitido a Terceiros limita-se ao estritamente exigido pelos
+Termos de Serviço da plataforma de hospedagem (como visualizar o conteúdo e criar forks
+dentro da própria plataforma). Esse acesso não autoriza qualquer dos atos do item 3.1, e
+um fork não concede nenhum direito sobre o Software.
+
+
+4. MARCAS
+
+O nome "Georgos Map", seus logotipos e demais sinais distintivos não são licenciados e não
+podem ser usados por Terceiros sem autorização prévia e por escrito dos Titulares.
+
+
+5. CONTRIBUIÇÕES
+
+5.1. Somente Colaboradores Autorizados podem contribuir com o Software.
+
+5.2. Ao contribuir, o Colaborador Autorizado declara que a contribuição é de sua autoria ou
+que tem direito de fornecê-la, e concorda que ela passa a integrar o Software sob esta
+licença, concedendo aos Titulares, de forma irrevogável e gratuita, o direito de usá-la,
+modificá-la e explorá-la como parte do Software.
+
+5.3. Contribuições de Terceiros (pull requests, issues com código, sugestões de
+implementação) não são solicitadas. Se enviadas, o remetente concede aos Titulares, de
+forma irrevogável e gratuita, o direito de usá-las, sem que isso crie para o remetente
+qualquer direito sobre o Software.
+
+
+6. AUSÊNCIA DE GARANTIA E RESPONSABILIDADE
+
+O Software é fornecido "no estado em que se encontra", sem garantias de qualquer tipo. Na
+máxima extensão permitida pela lei, os Titulares não respondem por danos decorrentes do
+uso, autorizado ou não, do Software.
+
+
+7. VIOLAÇÃO
+
+7.1. Qualquer uso em desacordo com esta licença é não autorizado e encerra
+automaticamente qualquer permissão eventualmente concedida.
+
+7.2. A violação dos direitos de autor de programa de computador sujeita o infrator às
+medidas civis cabíveis, incluindo indenização e busca e apreensão, e às sanções penais
+previstas no art. 12 da Lei nº 9.609/1998.
+
+
+8. LEI APLICÁVEL
+
+Esta licença é regida pelas leis da República Federativa do Brasil.
+
+
+9. CONTATO
+
+Pedidos de autorização devem ser feitos aos Titulares pelo perfil do mantenedor do
+repositório no GitHub (https://github.com/haynan1).
+
+
+-----------------------------------------------------------------------------------------
+ENGLISH SUMMARY (for convenience; the Portuguese text above prevails)
+
+Proprietary software. All rights reserved. No license is granted to anyone other than the
+authorized collaborators of the Georgos Map project listed in AUTHORS.md (or authorized by
+them in writing). Without prior written permission you may NOT copy, run, use, modify,
+create derivative works of, distribute, sell, host or offer as a service, use as a
+reference for a competing product, or use for training AI/ML models any part of this
+software. Public visibility of this repository is not a license: access is limited to what
+the hosting platform's Terms of Service strictly require (viewing and forking on the
+platform). Governed by the laws of Brazil.

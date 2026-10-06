@@ -1,5 +1,8 @@
 # Contribuindo
 
+> Somente colaboradores autorizados do projeto (ver [AUTHORS.md](AUTHORS.md)) podem
+> contribuir. Pull requests de terceiros são fechados sem revisão. Ver [LICENSE](LICENSE).
+
 ## Fluxo
 
 1. Branch a partir de `main`: `feat/...`, `fix/...`, `chore/...`.
