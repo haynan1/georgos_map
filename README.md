@@ -81,6 +81,7 @@ O CI (`.github/workflows/ci.yml`) roda tudo isso, valida as migrações (upgrade
 - [ARCHITECTURE.md](ARCHITECTURE.md) — stack, decisões e segurança, com o porquê de cada uma.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — como cada dupla adiciona módulos, telas e permissões.
 - [AGENTS.md](AGENTS.md) — regras do projeto para Claude Code e Codex.
+- [HANDOFF.md](HANDOFF.md) — checkpoint vivo: estado atual, próximos passos e armadilhas.
 
 ## Licença
 
