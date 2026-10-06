@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.12
 
-FROM node:24-alpine AS base
+FROM node:26-alpine AS base
 ENV PNPM_HOME=/pnpm PATH=/pnpm:$PATH
 RUN npm install --global --no-fund --no-audit pnpm@12.9.1
 WORKDIR /app
