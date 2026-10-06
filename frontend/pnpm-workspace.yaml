@@ -1,0 +1,8 @@
+# Supply-chain hardening:
+# - dependency install scripts are blocked unless explicitly allowed below;
+# - freshly published versions must age 3 days before they can be installed, which
+#   filters out most compromised-release attacks (they are usually yanked within hours).
+minimumReleaseAge: 4320
+onlyBuiltDependencies:
+  - esbuild
+

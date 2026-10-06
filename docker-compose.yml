@@ -1,0 +1,108 @@
+# Production-shaped stack. `docker compose up` also loads docker-compose.override.yml
+# (development); run `docker compose -f docker-compose.yml up --build` for the prod shape.
+
+name: georgos
+
+x-hardening: &hardening
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  tmpfs: ["/tmp"]
+
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+      APP_DB_USER: ${APP_DB_USER:?set APP_DB_USER in .env}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?set APP_DB_PASSWORD in .env}
+    volumes:
+      # Postgres 18 images keep data under /var/lib/postgresql/<major>; mounting the
+      # parent lets future major upgrades (pg_upgrade --link) live on the same volume.
+      - pgdata:/var/lib/postgresql
+      - ./infra/postgres/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [data]
+    restart: unless-stopped
+
+  # One-shot: applies migrations as the schema owner, then exits. The API container never
+  # receives owner credentials.
+  migrate:
+    image: georgos/api:local
+    build:
+      context: ./backend
+      target: runtime
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      MIGRATION_DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      APP_DB_USER: ${APP_DB_USER}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [data]
+    restart: "no"
+    <<: *hardening
+
+  api:
+    image: georgos/api:local
+    build:
+      context: ./backend
+      target: runtime
+    environment:
+      ENVIRONMENT: production
+      DATABASE_URL: postgresql+asyncpg://${APP_DB_USER}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-true}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      # The API is reachable only through the web proxy on the private network, and the
+      # proxy overwrites X-Forwarded-For, so the header can be trusted.
+      FORWARDED_ALLOW_IPS: "*"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health/ready', timeout=2)"
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    networks: [data, edge]
+    restart: unless-stopped
+    <<: *hardening
+
+  web:
+    image: georgos/web:local
+    build:
+      context: ./frontend
+      target: runtime
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    networks: [edge]
+    restart: unless-stopped
+    <<: *hardening
+    tmpfs: ["/tmp", "/var/cache/nginx"]
+
+networks:
+  # Internal: the database has no route to the outside world, and the web tier cannot
+  # reach it at all.
+  data:
+    internal: true
+  edge: {}
+
+volumes:
+  pgdata:

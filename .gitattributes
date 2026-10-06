@@ -1,0 +1,6 @@
+# Normalize line endings: shell scripts and Docker files break with CRLF inside Linux containers.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary

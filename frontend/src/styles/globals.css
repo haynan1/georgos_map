@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Georgos Map — design tokens.
+ *
+ * Dark-first. Neutrals carry a faint chlorophyll hue (145°) so the black reads as
+ * "field at night" instead of generic gray. One accent — signal lime — is reserved for
+ * primary actions, focus and live state; everything else is typography and space.
+ * Colors are OKLCH so lightness steps are perceptually even and contrast is predictable.
+ */
+:root {
+  color-scheme: dark;
+
+  --radius: 0.625rem;
+
+  --background: oklch(0.145 0.006 150);
+  --foreground: oklch(0.965 0.006 110);
+
+  --card: oklch(0.172 0.007 150);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.19 0.008 150);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.885 0.19 128);
+  --primary-foreground: oklch(0.2 0.045 135);
+  --secondary: oklch(0.235 0.008 150);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.21 0.007 150);
+  --muted-foreground: oklch(0.71 0.012 120);
+  --subtle-foreground: oklch(0.56 0.012 120);
+
+  --accent: oklch(0.245 0.009 150);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.7 0.19 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --success: oklch(0.8 0.15 150);
+  --warning: oklch(0.84 0.15 80);
+
+  --border: oklch(1 0 0 / 0.08);
+  --border-strong: oklch(1 0 0 / 0.14);
+  --input: oklch(1 0 0 / 0.11);
+  --ring: oklch(0.885 0.19 128 / 0.6);
+
+  --sidebar: oklch(0.13 0.006 150);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(0.2 0.008 150);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-rise: rise 700ms var(--ease-out-expo) both;
+  --animate-fade: fade 500ms ease-out both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: oklch(0.885 0.19 128 / 0.28);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Field map motion (auth panel). Neutralized by prefers-reduced-motion above. */
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -90;
+  }
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.9;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
