@@ -9,6 +9,14 @@ Multi-tenant web app for agricultural machinery fleet management (pt-BR users, B
 Desktop-first, responsive. UI copy is Brazilian Portuguese; code, identifiers and code
 comments are English.
 
+## Session protocol (mandatory)
+
+1. **Start:** read `HANDOFF.md` — current state, next steps, decisions already made, known traps.
+2. **End:** update `HANDOFF.md` (checkpoint) and commit it in the same PR as the session's
+   work, following the protocol at the bottom of that file. Never end a session without
+   leaving the next one a correct checkpoint.
+3. Never merge a PR without the human's explicit authorization in the current session.
+
 ## Commands
 
 | Task | Command |
