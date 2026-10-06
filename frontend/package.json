@@ -2,6 +2,7 @@
   "name": "georgos-web",
   "private": true,
   "version": "0.1.0",
+  "license": "UNLICENSED",
   "type": "module",
   "packageManager": "pnpm@12.9.1",
   "engines": {

@@ -82,6 +82,15 @@ O CI (`.github/workflows/ci.yml`) roda tudo isso, valida as migrações (upgrade
 - [CONTRIBUTING.md](CONTRIBUTING.md) — como cada dupla adiciona módulos, telas e permissões.
 - [AGENTS.md](AGENTS.md) — regras do projeto para Claude Code e Codex.
 
+## Licença
+
+**Software proprietário — todos os direitos reservados.** Ver [LICENSE](LICENSE).
+
+Este repositório é público apenas para visualização. Copiar, executar, modificar,
+distribuir, usar como base para outro produto ou para treinar modelos de IA é proibido a
+quem não é colaborador autorizado do projeto ([AUTHORS.md](AUTHORS.md)). Contribuições
+externas não são aceitas.
+
 ## Times
 
 | Dupla | Responsabilidade |
