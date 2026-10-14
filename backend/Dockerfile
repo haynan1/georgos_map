@@ -2,7 +2,7 @@
 
 ARG PYTHON_VERSION=3.14
 
-FROM ghcr.io/astral-sh/uv:0.12.23 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.1 AS uv
 
 # ---------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION}-slim AS base
